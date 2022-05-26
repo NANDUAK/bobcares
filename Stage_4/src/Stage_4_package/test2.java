@@ -1,14 +1,12 @@
 package Stage_4_package;
 
 import java.io.File;
-import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -26,8 +24,9 @@ public class test2 {
 	excel_sheet excel= new excel_sheet(ProjectPath+"\\excel_sheet\\data_base.xlsx","sheet1");
 	String username=excel.getCellDataString(1, 0);
 	String password=excel.getCellDataString(1, 1);
-
-	@Test(priority=1)
+			
+			
+	@Test(priority=25)
 	public void f() throws Throwable {	
 		WebDriver d=browser.getdriver("FIREFOX", url);
 		try{
@@ -44,13 +43,23 @@ public class test2 {
 			Thread.sleep(1000);
 			d.findElement(By.xpath("//tbody/tr[2]/td[1]/div[1]/a[8]")).click();
 			Thread.sleep(1000);
-			d.findElement(By.xpath("//a[contains(text(),'View User')]")).click();
+			d.findElement(By.xpath("//a[contains(text(),'Delete User')]")).click();
 			Thread.sleep(2000);
-			String actualmsg=d.findElement(By.xpath("//tbody//tr//td//fieldset//legend")).getText();
-			String expectedmsg="View User";
+			Select list1=new Select (d.findElement(By.name("id")));
+			list1.selectByVisibleText("testdelete");
+			d.findElement(By.id("id_log_reason")).sendKeys("test");
+			Thread.sleep(2000);
+			d.findElement(By.name("yes")).click();
+			Thread.sleep(2000);
+			Alert a1=d.switchTo().alert();
+			a1.accept();
+			Thread.sleep(1000);
+			String actualmsg=d.findElement(By.xpath("//td[contains(text(),'User Deleted Successfully !!')]")).getText();
+			String expectedmsg="User Deleted Successfully !!";
 			Assert.assertEquals(actualmsg, expectedmsg);
-			System.out.println("proper header shows");
+			System.out.println("proper message shows");
 			d.quit();
+			
 			
 		}catch (Exception e) {
 			e.printStackTrace();
