@@ -1754,6 +1754,136 @@ public class stage_4_class1 {
 			throw new Exception();
 		}}
 
+	@Test(priority = 28)
+	public void f29() throws Throwable  { 
+		WebDriver d=browser.getdriver("FIREFOX", url);
+		try {
+			base_code obj=PageFactory.initElements(d, base_code.class);
+			obj.setuserNamefield(username);
+			obj.setpassWodField(password);
+			obj.click_login();
+			Thread.sleep(3000);
+			String actual=d.findElement(By.xpath("//body/div[1]")).getText();
+			System.out.println("user is " + actual);
+			String expected="Agnisoonu K | Core";
+			Assert.assertEquals(actual, expected);
+			System.out.println("assertpass and login to stage 4");
+			Thread.sleep(4000);
+			d.findElement(By.xpath("//a[contains(text(),'LogOut!')]")).click();	
+			Thread.sleep(2000);
+			String actualmsg=d.findElement(By.xpath("//b[contains(text(),'Login!')]")).getText();
+			String expectedmsg="Login!";
+			Assert.assertEquals(actualmsg, expectedmsg);
+			System.out.println("proper header shows");
+			d.quit();
+
+		}catch (Exception e) {
+			e.printStackTrace();
+			TakesScreenshot scrShot =((TakesScreenshot)d);
+			File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+			File DestFile=new File("C:/Users/nandu/Desktop/selenium/screenshot/f29.png");
+			Files.copy(SrcFile, DestFile);
+			System.out.println("screenshot added");
+			d.quit();
+			throw new Exception();	
+
+		}catch(AssertionError e) {
+			e.printStackTrace();
+			TakesScreenshot scrShot =((TakesScreenshot)d);
+			File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+			File DestFile=new File("C:/Users/nandu/Desktop/selenium/screenshot/f29.png");
+			Files.copy(SrcFile, DestFile);
+			System.out.println("screenshot added");
+			d.quit();
+			throw new Exception(); 
+		}}
+
+	@Test(priority=29)
+	public void f30() throws Throwable {	
+		WebDriver d=browser.getdriver("FIREFOX", url);
+		try{
+			base_code obj=PageFactory.initElements(d, base_code.class);
+			obj.setuserNamefield(username);
+			obj.setpassWodField(password);
+			obj.click_login();
+			Thread.sleep(3000);
+			String actual=d.findElement(By.xpath("//body/div[1]")).getText();
+			System.out.println("user is " + actual);
+			String expected="Agnisoonu K | Core";
+			Assert.assertEquals(actual, expected);
+			System.out.println("assertpass and login to stage 4");
+			Thread.sleep(1000);
+			d.findElement(By.xpath("//tbody/tr[2]/td[1]/div[1]/a[8]")).click();
+			Thread.sleep(1000);
+			d.findElement(By.xpath("//a[contains(text(),'Add User')]")).click();
+			Thread.sleep(2000);
+			d.findElement(By.name("name")).sendKeys("desable");
+			Thread.sleep(1000);
+			d.findElement(By.name("nickname")).sendKeys("desable test");
+			Thread.sleep(1000);
+			d.findElement(By.name("email")).sendKeys("nandu.a@poornam.com");
+			Thread.sleep(1000);
+			Select list1=new Select (d.findElement(By.name("selOff")));
+			list1.selectByVisibleText("Sunday");
+			d.findElement(By.name("AddRole")).click();
+			Thread.sleep(2000);
+			Select list2=new Select (d.findElement(By.name("selRole[]")));
+			list2.selectByVisibleText("QM");
+			Thread.sleep(1000);
+			d.findElement(By.name("AddTeam")).click();
+			Thread.sleep(1000);
+			Select list3=new Select (d.findElement(By.name("selTeam[]")));
+			list3.selectByVisibleText("Mirage");
+			Thread.sleep(1000);
+			Select list4=new Select (d.findElement(By.name("selTeamRole[]")));
+			list4.selectByVisibleText("Team Member");
+			Thread.sleep(1000);
+			d.findElement(By.id("id_log_reason")).sendKeys("test user");
+			Thread.sleep(1000);
+			d.findElement(By.name("Add")).click();
+			Thread.sleep(2000);
+			String actualmsg=d.findElement(By.xpath("//td[contains(text(),'User Added Successfully !!')]")).getText();
+			String expectedmsg="User Added Successfully !!";
+			Assert.assertEquals(actualmsg, expectedmsg);
+			System.out.println("proper msg shows");
+			d.findElement(By.xpath("//tbody/tr[2]/td[1]/div[1]/a[8]")).click();
+			Thread.sleep(1000);
+			d.findElement(By.xpath("//a[contains(text(),'Disable User')]")).click();
+			Thread.sleep(2000);
+			Select list5=new Select (d.findElement(By.name("id")));
+			list5.selectByVisibleText("desable");
+			d.findElement(By.name("comment")).sendKeys("demo");
+			d.findElement(By.name("yes")).click();
+			Thread.sleep(2000);
+			Alert a1=d.switchTo().alert();
+			a1.accept();
+			String actualmsg2=d.findElement(By.xpath("//td[contains(text(),'User Disabled Successfully !!')]")).getText();
+			String expectedmsg2="User Disabled Successfully !!";
+			Assert.assertEquals(actualmsg2, expectedmsg2);
+			System.out.println("proper msg shows");
+			d.quit();			
+
+		}catch (Exception e) {
+			e.printStackTrace();
+			TakesScreenshot scrShot =((TakesScreenshot)d);
+			File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+			File DestFile=new File("C:/Users/nandu/Desktop/selenium/screenshot/f30.png");
+			Files.copy(SrcFile, DestFile);
+			System.out.println("screenshot added");
+			d.quit();
+			throw new Exception();	
+
+		}catch(AssertionError e) {
+			e.printStackTrace();
+			TakesScreenshot scrShot =((TakesScreenshot)d);
+			File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+			File DestFile=new File("C:/Users/nandu/Desktop/selenium/screenshot/f30.png");
+			Files.copy(SrcFile, DestFile);
+			System.out.println("screenshot added");
+			d.quit();
+			throw new Exception();
+		}}
+
 
 
 
